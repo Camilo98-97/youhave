@@ -266,7 +266,7 @@
                                 <form>
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--12-col">
-                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS ADMINISTRADOR</legend><br>
+                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS USUARIO</legend><br>
                                         </div>
                                         <!-- <div class="mdl-cell mdl-cell--12-col">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
