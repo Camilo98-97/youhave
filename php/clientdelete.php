@@ -15,7 +15,7 @@
 
     // Ejecucion
     $miConsulta->execute([
-        idCliente=>$idCliente
+        'idCliente'=>$idCliente
     ]);
 
     // Redireccionamiento

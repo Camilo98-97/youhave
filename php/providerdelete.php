@@ -15,7 +15,7 @@
 
     // Ejecucion
     $miConsulta->execute([
-        pkIdProveedor=>$idProvider
+        'pkIdProveedor'=>$idProvider
     ]);
 
     // Redireccionamiento

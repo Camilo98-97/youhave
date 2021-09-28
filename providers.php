@@ -377,6 +377,7 @@
                                         <th>Dirección</th>
                                         <th>Teléfono</th>
                                         <th>Correo</th>
+                                        <th>Web</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
