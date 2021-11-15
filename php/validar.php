@@ -1,10 +1,10 @@
 <?php
-    $usuario=$_POST['usuario'];
-    $pass=$_POST['pass'];
+    $usuario=$_POST['username'];
+    $pass=$_POST['password'];
 
     $conexion=mysqli_connect("localhost:3307","root","","newyouhavebd");
 
-    $consulta="SELECT * FROM registrocuentas WHERE usuario='$usuario' AND pass='$pass'";
+    $consulta="SELECT * FROM users WHERE username='$usuario' AND password='$pass'";
     $resultado=mysqli_query($conexion, $consulta);
 
     $filas=mysqli_num_rows($resultado);

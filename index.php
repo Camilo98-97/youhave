@@ -29,16 +29,16 @@
                 <i class="zmdi zmdi-account-circle"></i>
             </p>
             <p class="text-center text-condensedLight">Ingresa con tu cuenta</p>
-            <form action="php/validar.php" method="POST">
+            <form action="login/login.php" method="POST">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" name="usuario">
+                    <input class="mdl-textfield__input" type="text" name="username">
                     <label class="mdl-textfield__label">Usuario</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="password" name="pass">
+                    <input class="mdl-textfield__input" type="password" name="password">
                     <label class="mdl-textfield__label">Contraseña</label>
                 </div>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3F51B5; margin: 0 auto; display: block;">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3F51B5; margin: 0 auto; display: block;" name="login-btn">
 					INGRESAR
 				</button>
             </form>

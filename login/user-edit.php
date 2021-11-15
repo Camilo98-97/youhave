@@ -1,25 +1,79 @@
+<?php
+    // variables
+    $hostDB='localhost:3307';
+    $nombreDB='newyouhavebd';
+    $usuarioDB='root';
+    $passwordDB='';
+    $id=isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
+    $username=isset($_REQUEST['username']) ? $_REQUEST['username'] : null;
+    $password=isset($_REQUEST['password']) ? $_REQUEST['password'] : null;
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // conecta con DB
+    $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
+    $miPDO=new PDO($hostPDO, $usuarioDB, $passwordDB);
+
+    // comprobar se recibimos datos por POST
+    if ($_SERVER['REQUEST_METHOD']=='POST') {
+        // preparar update
+        $miUpdate = $miPDO -> prepare ('UPDATE users SET username = :username, password = :password WHERE id = :id');
+        
+        // Ejecuta UPDATE con los datos
+        $miUpdate -> execute(
+            [
+                'id' => $id,
+                'username'=>$username,
+                'password'=>$hashed_password
+            ]
+        );
+
+        // redireccionar a leer
+        header('Location: ../users.php'); 
+
+    } else {
+        // prepara select
+        $miConsulta = $miPDO -> prepare ('SELECT * FROM users WHERE id = :id;');
+
+        // ejecuta consulta
+        $miConsulta -> execute(
+            [
+                'id' => $id
+            ]
+        );
+
+    }
+
+    // obtiene un resultado
+    $libro = $miConsulta -> fetch();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Salidas</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/sweetalert2.css">
-    <link rel="stylesheet" href="css/material.min.css">
-    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/ajaxjq.min.js"></script>
+    <title>Clients</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/sweetalert2.css">
+    <link rel="stylesheet" href="../css/material.min.css">
+    <link rel="stylesheet" href="../css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
+    <script src="../js/ajaxjq.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
     </script>
-    <script src="js/material.min.js"></script>
-    <script src="js/sweetalert2.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/main.js"></script>
-    <link rel="icon" href="assets/img/icon.png">
+    <script src="../js/material.min.js"></script>
+    <script src="../js/sweetalert2.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/main.js"></script>
+    <link rel="icon" href="../assets/img/icon.png">
 </head>
 
 <body>
@@ -33,7 +87,7 @@
             </div>
             <figure class="full-width navLateral-body-tittle-menu">
                 <div>
-                    <img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
+                    <img src="../assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
                 </div>
                 <figcaption>
                     <span>
@@ -45,7 +99,7 @@
             <nav class="full-width">
                 <ul class="full-width list-unstyle menu-principal">
                     <li class="full-width">
-                        <a href="home.php" class="full-width">
+                        <a href="../home.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-view-dashboard"></i>
                             </div>
@@ -77,7 +131,7 @@
                                 </a>
                             </li> -->
                             <li class="full-width">
-                                <a href="providers.php" class="full-width">
+                                <a href="../providers.php" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-truck"></i>
                                     </div>
@@ -110,18 +164,8 @@
                             <span class="zmdi zmdi-chevron-left"></span>
                         </a>
                         <ul class="full-width menu-principal sub-menu-options">
-                            <!-- <li class="full-width">
-                                <a href="admin.html" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-account"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr">
-                                        ADMINISTRADORES
-                                    </div>
-                                </a>
-                            </li> -->
                             <li class="full-width">
-                                <a href="users.php" class="full-width">
+                                <a href="../users.php" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-account"></i>
                                     </div>
@@ -131,7 +175,7 @@
                                 </a>
                             </li>
                             <li class="full-width">
-                                <a href="client.php" class="full-width">
+                                <a href="../client.php" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-accounts"></i>
                                     </div>
@@ -144,7 +188,7 @@
                     </li>
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
-                        <a href="products.php" class="full-width">
+                        <a href="../products.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-palette"></i>
                             </div>
@@ -155,7 +199,7 @@
                     </li>
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
-                        <a href="sales.php" class="full-width">
+                        <a href="../sales.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-shopping-cart"></i>
                             </div>
@@ -166,7 +210,7 @@
                     </li>
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
-                        <a href="inventory.php" class="full-width">
+                        <a href="../inventory.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-store"></i>
                             </div>
@@ -224,7 +268,7 @@
                     <ul class="list-unstyle">
                         <!-- <li class="btn-Notification" id="notifications">
                             <i class="zmdi zmdi-notifications"></i>
-                            <div class="mdl-tooltip" for="notifications">Notifications</div>
+                            <div class="mdl-tooltip" for="notifications">Notificaciones</div>
                         </li> -->
                         <li class="btn-exit" id="btn-exit">
                             <i class="zmdi zmdi-power"></i>
@@ -233,7 +277,7 @@
                         <li class="text-condensedLight noLink"><small>Nombre de usuario</small></li>
                         <li class="noLink">
                             <figure>
-                                <img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
+                                <img src="../assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
                             </figure>
                         </li>
                     </ul>
@@ -242,7 +286,7 @@
         </div>
         <!-- <section class="full-width header-well">
             <div class="full-width header-well-icon">
-                <i class="zmdi zmdi-shopping-cart"></i>
+                <i class="zmdi zmdi-accounts"></i>
             </div>
             <div class="full-width header-well-text">
                 <p class="text-condensedLight">
@@ -250,71 +294,41 @@
                 </p>
             </div>
         </section> -->
-        <div class="full-width divider-menu-h"></div>
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar">
-                <a href="#tabListSales" class="mdl-tabs__tab is-active">LISTA</a>
-                <a href="#tabNewSales" class="mdl-tabs__tab">NUEVO</a>
+                <a href="#tabNewClient" class="mdl-tabs__tab is-active">EDITAR</a>
             </div>
-            <div class="mdl-tabs__panel" id="tabNewSales">
+            <div class="mdl-tabs__panel is-active" id="tabNewClient">
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="full-width panel mdl-shadow--2dp">
                             <div class="full-width panel-tittle bg-primary text-center tittles">
-                                Nueva Salida
+                                Editar Usuario
                             </div>
                             <div class="full-width panel-content">
-                                <form>
+                                <form method="post">
                                     <div class="mdl-grid">
-                                        <div class="mdl-cell mdl-cell--12-col">
-                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DE LA SALIDA</legend><br>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield">
-                                                <input type="date" class="mdl-textfield__input">
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9 ]*(\.[0-9]+)?" id="numberProvider">
-                                                <label class="mdl-textfield__label" for="numberProvider">Cantidad</label>
-                                                <span class="mdl-textfield__error">Número invalido</span>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9 ]*(\.[0-9]+)?" id="numberProvider">
-                                                <label class="mdl-textfield__label" for="numberProvider">Producto</label>
-                                                <span class="mdl-textfield__error">Número invalido</span>
+                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="username" name="username">
+                                                <label class="mdl-textfield__label" for="username">Nombre de usuario</label>
+                                                <span class="mdl-textfield__error">Usuario Invalido</span>
                                             </div>
                                         </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameProvider">
-                                                <label class="mdl-textfield__label" for="NameProvider">Precio Unitario</label>
-                                                <span class="mdl-textfield__error">Nombre invalido</span>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="encarProvider">
-                                                <label class="mdl-textfield__label" for="encarProvider">Total</label>
-                                                <span class="mdl-textfield__error">Nombre invalido</span>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--12-col">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" id="addressProvider">
-                                                <label class="mdl-textfield__label" for="addressProvider">Cliente</label>
-                                                <span class="mdl-textfield__error">Dirección invalido</span>
+                                                <input class="mdl-textfield__input" type="password" id="password" name="password">
+                                                <label class="mdl-textfield__label" for="password">Contraseña</label>
+                                                <span class="mdl-textfield__error">Contraseña Invalida</span>
                                             </div>
                                         </div>
                                     </div>
                                     <p class="text-center">
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addProvider">
-											<i class="zmdi zmdi-plus"></i>
+                                        <input type="hidden" name="id" value="<?= $libro['id'] ?>">
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+											<i class="zmdi zmdi-check"></i>
 										</button>
-                                        <div class="mdl-tooltip" for="btn-addProvider">Agregar Salida</div>
+                                        <div class="mdl-tooltip" for="btn-addClient">Editar Uaurio</div>
                                     </p>
                                 </form>
                             </div>
@@ -322,61 +336,6 @@
                     </div>
                 </div>
             </div>
-            <div class="mdl-tabs__panel is-active" id="tabListSales">
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
-                        <div class="full-width panel mdl-shadow--2dp">
-                            <div class="full-width panel-tittle bg-success text-center tittles">
-                                Lista de Salidas
-                            </div>
-                            <div class="full-width panel-content">
-                                <!-- <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                                        <label class="mdl-button mdl-js-button mdl-button--icon" for="searchProvider">
-											<i class="zmdi zmdi-search"></i>
-										</label>
-                                        <div class="mdl-textfield__expandable-holder">
-                                            <input class="mdl-textfield__input" type="text" id="searchProvider">
-                                            <label class="mdl-textfield__label"></label>
-                                        </div>
-                                    </div>
-                                </form> -->
-                                <div class="mdl-list">
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-shopping-cart mdl-list__item-avatar"></i>
-											<span>1. Salida</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i style="padding-right: 15px; color: #3f903f;" class="zmdi zmdi-border-color"></i></a>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-delete"></i></a>
-                                    </div>
-                                    <li class="full-width divider-menu-h"></li>
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-shopping-cart mdl-list__item-avatar"></i>
-											<span>2. Salida</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                                    </div>
-                                    <li class="full-width divider-menu-h"></li>
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-shopping-cart mdl-list__item-avatar"></i>
-											<span>3. Salida</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 </body>
 

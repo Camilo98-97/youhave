@@ -1,10 +1,22 @@
+<?php
+    $hostDB='localhost:3307';
+    $nombreDB='newyouhavebd';
+    $usuarioDB='root';
+    $passwordDB='';
+
+    $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
+    $miPDO=new PDO($hostPDO, $usuarioDB, $passwordDB);
+
+    $miConsulta=$miPDO->prepare('SELECT * FROM users');
+    $miConsulta->execute();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Users</title>
+    <title>Usuarios</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/sweetalert2.css">
     <link rel="stylesheet" href="css/material.min.css">
@@ -86,16 +98,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <!-- <li class="full-width">
-                                <a href="categories.html" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-label"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr">
-                                        CATEGORIES
-                                    </div>
-                                </a>
-                            </li> -->
+
                         </ul>
                     </li>
                     <li class="full-width divider-menu-h"></li>
@@ -252,10 +255,10 @@
         </section> -->
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar">
-                <a href="#tabListAdmin" class="mdl-tabs__tab is-active">LISTA</a>
-                <a href="#tabNewAdmin" class="mdl-tabs__tab">NUEVO</a>
+                <a href="#tabListUser" class="mdl-tabs__tab is-active">LISTA</a>
+                <a href="#tabNewUser" class="mdl-tabs__tab">NUEVO</a>
             </div>
-            <div class="mdl-tabs__panel" id="tabNewAdmin">
+            <div class="mdl-tabs__panel" id="tabNewUser">
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="full-width panel mdl-shadow--2dp">
@@ -263,11 +266,11 @@
                                 Nuevo Usuario
                             </div>
                             <div class="full-width panel-content">
-                                <form>
+                                <form action="login/signup.php" method="POST">
                                     <div class="mdl-grid">
-                                        <div class="mdl-cell mdl-cell--12-col">
+                                        <!-- <div class="mdl-cell mdl-cell--12-col">
                                             <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS USUARIO</legend><br>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="mdl-cell mdl-cell--12-col">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                                 <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="DNIAdmin">
@@ -275,21 +278,21 @@
                                                 <span class="mdl-textfield__error">Invalid number</span>
                                             </div>
                                         </div> -->
-                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> -->
                                                 <!-- <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameAdmin"> -->
                                                 <!-- <label class="mdl-textfield__label" for="NameAdmin">Tipo de documento</label> -->
-                                                <select class="mdl-textfield__input" name="tipod" id="typeDocument">
+                                                <!-- <select class="mdl-textfield__input" name="tipod" id="typeDocument">
                                                     <option value="" disabled="" selected="">Tipo de documento</option>
                                                     <option value="">Tarjeta de identidad</option>
                                                     <option value="">Cedula</option>
                                                     <option value="">Cedula de extranjeria</option>
                                                     <option value="">NIT</option>
-                                                  </select>
+                                                  </select> -->
                                                 <!-- <span class="mdl-textfield__error">Invalid name</span> -->
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                            <!-- </div>
+                                        </div> -->
+                                        <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                                 <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="numberDocument">
                                                 <label class="mdl-textfield__label" for="numberDocument">Número de documento</label>
@@ -330,25 +333,25 @@
                                                 <label class="mdl-textfield__label" for="addressUser">Dirección</label>
                                                 <span class="mdl-textfield__error">Dirección Invalido</span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="mdl-cell mdl-cell--12-col">
                                             <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DETALLES DE LA CUENTA</legend><br>
                                         </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="userName">
-                                                <label class="mdl-textfield__label" for="userName">Nombre de usuario</label>
+                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="user-name" name="username">
+                                                <label class="mdl-textfield__label" for="username">Nombre de usuario</label>
                                                 <span class="mdl-textfield__error">Usuario Invalido</span>
                                             </div>
                                         </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="password" id="passwordUser">
-                                                <label class="mdl-textfield__label" for="passwordUser">Contraseña</label>
+                                                <input class="mdl-textfield__input" type="password" id="user-pass" name="password">
+                                                <label class="mdl-textfield__label" for="password">Contraseña</label>
                                                 <span class="mdl-textfield__error">Contraseña Invalida</span>
                                             </div>
                                         </div>
-                                        <div class="mdl-cell mdl-cell--12-col">
+                                        <!-- <div class="mdl-cell mdl-cell--12-col">
                                             <div class="mdl-textfield mdl-js-textfield">
                                                 <select class="mdl-textfield__input" id="rolUser">
 													<option value="" disabled="" selected="">Seleccione el ROL</option>
@@ -356,13 +359,13 @@
 													<option value="">Usuario</option>
 												</select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <p class="text-center">
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addAdmin">
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
 											<i class="zmdi zmdi-plus"></i>
 										</button>
-                                        <div class="mdl-tooltip" for="btn-addAdmin">Agregar Administrador</div>
+                                        <div class="mdl-tooltip" for="signup-btn">Agregar Usuario</div>
                                     </p>
                                 </form>
                             </div>
@@ -370,78 +373,46 @@
                     </div>
                 </div>
             </div>
-            <div class="mdl-tabs__panel is-active" id="tabListAdmin">
+
+            <div class="mdl-tabs__panel is-active" id="tabListUser">
                 <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
-                        <div class="full-width panel mdl-shadow--2dp">
-                            <div class="full-width panel-tittle bg-success text-center tittles">
-                                LISTADO DE USUARIOS
-                            </div>
-                            <div class="full-width panel-content">
-                                <!-- buscador -->
-                                <!-- <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                                        <label class="mdl-button mdl-js-button mdl-button--icon" for="searchAdmin">
-											<i class="zmdi zmdi-search"></i>
-										</label>
-                                        <div class="mdl-textfield__expandable-holder">
-                                            <input class="mdl-textfield__input" type="text" id="searchAdmin">
-                                            <label class="mdl-textfield__label"></label>
-                                        </div>
-                                    </div>
-                                </form> -->
-                                <div class="mdl-list">
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>1. Administrator name</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i style="padding-right: 15px; color: #3f903f;" class="zmdi zmdi-border-color"></i></a>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-delete"></i></a>
-                                    </div>
-                                    <li class="full-width divider-menu-h"></li>
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>2. Administrator name</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                                    </div>
-                                    <li class="full-width divider-menu-h"></li>
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>3. Administrator name</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                                    </div>
-                                    <li class="full-width divider-menu-h"></li>
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>4. Administrator name</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                                    </div>
-                                    <li class="full-width divider-menu-h"></li>
-                                    <div class="mdl-list__item mdl-list__item--two-line">
-                                        <span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>5. Administrator name</span>
-                                        <span class="mdl-list__item-sub-title">DNI</span>
-                                        </span>
-                                        <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                        <div class="table-responsive">
+                            <div class="full-width panel-tittle bg-success text-center tittles">Lista de Usuarios</div>
+                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th class="mdl-data-table__cell--non-numeric">Usuario</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($miConsulta as $clave=>$valor):?>
+                                    <tr>
+                                        <td class="mdl-data-table__cell--non-numeric"><?=$valor['username']?></td>
+                                        <td><div class="dropdown">
+                                        <button class="mdl-button mdl-button--icon mdl-js-button">
+                                            <!-- <span class="zmdi zmdi-more"></span> -->
+                                            </button>
+                                                <div class="dropdown-content">
+                                                <a href="login/user-edit.php?id=<?=$valor['id']?>">
+                                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                                <i class="zmdi zmdi-edit"></i></button></a>
+										        <a href="login/user-delete.php?id=<?=$valor['id']?>">
+                                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                                <i class="zmdi zmdi-delete"></i></button></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 </body>
