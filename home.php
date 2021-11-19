@@ -1,7 +1,3 @@
-<!-- 
-* Copyright 2018 Carlos Eduardo Alfaro Orellana
-  https://www.youtube.com/c/CarlosAlfaro007
--->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +13,7 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/ajaxjq.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
+    window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
     </script>
     <script src="js/material.min.js"></script>
     <script src="js/sweetalert2.min.js"></script>
@@ -107,9 +103,9 @@
                 </div>
                 <figcaption>
                     <span>
-                    Nombre de Admin<br>
-                    <small>Admin</small>
-                </span>
+                        Nombre de Admin<br>
+                        <small>Admin</small>
+                    </span>
                 </figcaption>
             </figure>
             <nav class="full-width">
@@ -300,7 +296,7 @@
                             <i class="zmdi zmdi-power"></i>
                             <div class="mdl-tooltip" for="btn-exit">Salir</div>
                         </li>
-                        
+
                         <li class="text-condensedLight noLink"><small>Nombre de Usuario</small></li>
                         <li class="noLink">
                             <figure>
@@ -326,27 +322,27 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-						10<br>
-						<small>Usuarios</small>
-					</span>
+                        10<br>
+                        <small>Usuarios</small>
+                    </span>
                 </div>
                 <i class="zmdi zmdi-account tile-icon"></i>
             </article>
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-						71<br>
-						<small>Clientes</small>
-					</span>
+                        71<br>
+                        <small>Clientes</small>
+                    </span>
                 </div>
                 <i class="zmdi zmdi-accounts tile-icon"></i>
             </article>
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-						7<br>
-						<small>Proveedores</small>
-					</span>
+                        7<br>
+                        <small>Proveedores</small>
+                    </span>
                 </div>
                 <i class="zmdi zmdi-truck tile-icon"></i>
             </article>
@@ -362,18 +358,18 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-						121<br>
-						<small>Productos</small>
-					</span>
+                        121<br>
+                        <small>Productos</small>
+                    </span>
                 </div>
                 <i class="zmdi zmdi-palette tile-icon"></i>
             </article>
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-						47<br>
-						<small>Salidas</small>
-					</span>
+                        47<br>
+                        <small>Salidas</small>
+                    </span>
                 </div>
                 <i class="zmdi zmdi-shopping-cart tile-icon"></i>
             </article>

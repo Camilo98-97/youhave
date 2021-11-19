@@ -42,6 +42,39 @@ $(document).ready(function() {
                 }
             });
     });
+
+    /*editar producto*/
+    
+    $('.btn-delete-product').on('click', function() {
+        swal({
+            title: '¿Quieres Eliminar este producto?',
+            text: "El producto se eliminara",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            closeOnConfirm: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = '../products/product-delete.php';
+            }
+        });
+    });
+
+    // $('.btn-update-product').on('click', function() {
+    //     swal({
+    //         title: 'Producto Actualizado',
+    //         text: 'El producto ha sido actualziado con exito.',
+    //         type: 'success',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //     }, function () {
+    //         window.location.href = '../products.php';
+    //     });
+    // });
+
+
+
     /*Mostrar y ocultar submenus*/
     $('.btn-subMenu').on('click', function() {
         var subMenu = $(this).next('ul');

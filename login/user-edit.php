@@ -67,7 +67,7 @@
     <link rel="stylesheet" href="../css/dropdown.css">
     <script src="../js/ajaxjq.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
+    window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
     </script>
     <script src="../js/material.min.js"></script>
     <script src="../js/sweetalert2.min.js"></script>
@@ -91,9 +91,9 @@
                 </div>
                 <figcaption>
                     <span>
-                    Nombre de Admin<br>
-                    <small>Admin</small>
-                </span>
+                        Nombre de Admin<br>
+                        <small>Admin</small>
+                    </span>
                 </figcaption>
             </figure>
             <nav class="full-width">
@@ -308,16 +308,20 @@
                             <div class="full-width panel-content">
                                 <form method="post">
                                     <div class="mdl-grid">
-                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="username" name="username">
-                                                <label class="mdl-textfield__label" for="username">Nombre de usuario</label>
+                                                <input class="mdl-textfield__input" type="text"
+                                                    pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="username"
+                                                    name="username" value="<?= $libro['username'] ?>">
+                                                <label class="mdl-textfield__label" for="username">Nombre de
+                                                    usuario</label>
                                                 <span class="mdl-textfield__error">Usuario Invalido</span>
                                             </div>
                                         </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="password" id="password" name="password">
+                                                <input class="mdl-textfield__input" type="password" id="password"
+                                                    name="password" value="<?= $libro['password'] ?>">
                                                 <label class="mdl-textfield__label" for="password">Contraseña</label>
                                                 <span class="mdl-textfield__error">Contraseña Invalida</span>
                                             </div>
@@ -325,10 +329,11 @@
                                     </div>
                                     <p class="text-center">
                                         <input type="hidden" name="id" value="<?= $libro['id'] ?>">
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
-											<i class="zmdi zmdi-check"></i>
-										</button>
-                                        <div class="mdl-tooltip" for="btn-addClient">Editar Uaurio</div>
+                                        <button
+                                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                            <i class="zmdi zmdi-check"></i>
+                                        </button>
+                                    <div class="mdl-tooltip" for="btn-addClient">Editar Uaurio</div>
                                     </p>
                                 </form>
                             </div>
