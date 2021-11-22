@@ -125,7 +125,7 @@
             <nav class="full-width">
                 <ul class="full-width list-unstyle menu-principal">
                     <li class="full-width">
-                        <a href="home.php" class="full-width">
+                        <a href="../home.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-view-dashboard"></i>
                             </div>
@@ -157,7 +157,7 @@
                                 </a>
                             </li> -->
                             <li class="full-width">
-                                <a href="providers.php" class="full-width">
+                                <a href="../providers.php" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-truck"></i>
                                     </div>
@@ -201,7 +201,7 @@
                                 </a>
                             </li> -->
                             <li class="full-width">
-                                <a href="users.php" class="full-width">
+                                <a href="../users.php" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-account"></i>
                                     </div>
@@ -211,7 +211,7 @@
                                 </a>
                             </li>
                             <li class="full-width">
-                                <a href="client.php" class="full-width">
+                                <a href="../client.php" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-accounts"></i>
                                     </div>
@@ -224,7 +224,7 @@
                     </li>
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
-                        <a href="products.php" class="full-width">
+                        <a href="../products.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-palette"></i>
                             </div>
@@ -235,7 +235,7 @@
                     </li>
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
-                        <a href="sales.php" class="full-width">
+                        <a href="../sales.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-shopping-cart"></i>
                             </div>
@@ -246,7 +246,7 @@
                     </li>
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
-                        <a href="inventory.php" class="full-width">
+                        <a href="../inventory.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-store"></i>
                             </div>

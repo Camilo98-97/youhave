@@ -23,6 +23,45 @@
 </head>
 
 <body>
+    <?php
+    $hostDB='localhost:3307';
+    $nombreDB='newyouhavebd';
+    $usuarioDB='root';
+    $contraseyaDB='';
+
+    $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
+    $pdo=new PDO($hostPDO, $usuarioDB, $contraseyaDB);
+
+    //usuarios
+    $sql = "SELECT COUNT(id) AS allusers FROM users";
+    $stmt = $pdo->prepare($sql);
+    $stmt -> execute();
+
+    $query = $stmt -> fetch();
+
+    //clientes
+    $sql2 = "SELECT COUNT(idCliente) AS allclientes FROM cliente";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2 -> execute();
+
+    $query2 = $stmt2 -> fetch();
+    
+    //productos
+    $sql3 = "SELECT COUNT(id) AS allproduct FROM product";
+    $stmt3 = $pdo->prepare($sql3);
+    $stmt3 -> execute();
+
+    $query3 = $stmt3 -> fetch();
+
+    //proveeedores
+    $sql4 = "SELECT COUNT(id) AS allproveedor FROM proveedor";
+    $stmt4 = $pdo->prepare($sql4);
+    $stmt4 -> execute();
+
+    $query4 = $stmt4 -> fetch();
+
+?>
+
     <!-- Notifications area -->
     <!-- <section class="full-width container-notifications">
         <div class="full-width container-notifications-bg btn-Notification"></div>
@@ -322,7 +361,7 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-                        10<br>
+                        <?= $query['allusers']?><br>
                         <small>Usuarios</small>
                     </span>
                 </div>
@@ -331,7 +370,7 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-                        71<br>
+                        <?= $query2['allclientes']?><br>
                         <small>Clientes</small>
                     </span>
                 </div>
@@ -340,7 +379,7 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-                        7<br>
+                        <?= $query4['allproveedor']?><br>
                         <small>Proveedores</small>
                     </span>
                 </div>
@@ -358,7 +397,7 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-                        121<br>
+                        <?= $query3['allproduct']?><br>
                         <small>Productos</small>
                     </span>
                 </div>

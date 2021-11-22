@@ -1,62 +1,3 @@
-<?php
-    // variables
-    $hostDB='localhost:3307';
-    $nombreDB='newyouhavebd';
-    $usuarioDB='root';
-    $contraseyaDB='';
-    $id=isset($_REQUEST['pkIdProveedor']) ? $_REQUEST['pkIdProveedor'] :null;
-    $tipoDoc=isset($_REQUEST['tipoDocumento']) ? $_REQUEST['tipoDocumento'] :null;
-    $documento=isset($_REQUEST['numeroDocumento']) ? $_REQUEST['numeroDocumento'] :null;
-    $nombre=isset($_REQUEST['nombreProveedor']) ? $_REQUEST['nombreProveedor'] :null;
-    $direccion=isset($_REQUEST['direccionProveedor']) ? $_REQUEST['direccionProveedor'] :null;
-    $telefono=isset($_REQUEST['telefonoProveedor']) ? $_REQUEST['telefonoProveedor'] :null;
-    $correo=isset($_REQUEST['correoProveedor']) ? $_REQUEST['correoProveedor'] :null;
-    $pagina=isset($_REQUEST['paginaWeb']) ? $_REQUEST['paginaWeb'] :null;
-
-    /*Conexion */
-    $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
-    $miPDO= new PDO($hostPDO, $usuarioDB, $contraseyaDB);
-
-    // comprobar se recibimos datos por POST
-    if ($_SERVER['REQUEST_METHOD']=='POST') {
-        // preparar update
-        $miUpdate = $miPDO -> prepare ('UPDATE proveedor SET tipoDocumento = :tipoDocumento, numeroDocumento = :numeroDocumento, nombreProveedor = :nombreProveedor, direccionProveedor = :direccionProveedor, telefonoProveedor = :telefonoProveedor, correoProveedor = :correoProveedor, paginaWeb = :paginaWeb WHERE pkIdProveedor = :pkIdProveedor');
-        
-        // Ejecuta UPDATE con los datos
-        $miUpdate -> execute(
-            [
-                'pkIdProveedor' =>$id,
-                'tipoDocumento'=>$tipoDoc,
-                'numeroDocumento'=>$documento,
-                'nombreProveedor'=>$nombre,
-                'direccionProveedor'=>$direccion,
-                'telefonoProveedor'=>$telefono,
-                'correoProveedor'=>$correo,
-                'paginaWeb'=>$pagina
-            ]
-        );
-
-        // redireccionar a leer
-        header('Location: ../providers.php'); 
-
-    } else {
-        // prepara select
-        $miConsulta = $miPDO -> prepare ('SELECT * FROM proveedor WHERE pkIdProveedor = :pkIdProveedor;');
-
-        // ejecuta consulta
-        $miConsulta -> execute(
-            [
-                'pkIdProveedor' => $id
-            ]
-        );
-
-    }
-
-    // obtiene un resultado
-    $libro = $miConsulta -> fetch();
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -73,7 +14,7 @@
     <link rel="stylesheet" href="../css/dropdown.css">
     <script src="../js/ajaxjq.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
+    window.jQuery || document.write('<script src="../js/jquery-1.11.2.min.js"><\/script>')
     </script>
     <script src="../js/material.min.js"></script>
     <script src="../js/sweetalert2.min.js"></script>
@@ -81,6 +22,73 @@
     <script src="../js/main.js"></script>
     <link rel="icon" href="../assets/img/icon.png">
 </head>
+
+<?php 
+    $hostDB='localhost:3307';
+    $nombreDB='newyouhavebd';
+    $usuarioDB='root';
+    $passwordDB='';
+
+    $id=isset($_REQUEST['id']) ? $_REQUEST['id'] :null;
+    $tipoDoc=isset($_REQUEST['tipoDocumento']) ? $_REQUEST['tipoDocumento'] :null;
+    $documento=isset($_REQUEST['numeroDocumento']) ? $_REQUEST['numeroDocumento'] :null;
+    $nombre=isset($_REQUEST['nombreProveedor']) ? $_REQUEST['nombreProveedor'] :null;
+    $direccion=isset($_REQUEST['direccionProveedor']) ? $_REQUEST['direccionProveedor'] :null;
+    $telefono=isset($_REQUEST['telefonoProveedor']) ? $_REQUEST['telefonoProveedor'] :null;
+    $correo=isset($_REQUEST['correoProveedor']) ? $_REQUEST['correoProveedor'] :null;
+    $pagina=isset($_REQUEST['paginaWeb']) ? $_REQUEST['paginaWeb'] :null;
+
+    $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
+    $miPDO=new PDO($hostPDO, $usuarioDB, $passwordDB);
+
+    $miConsulta = $miPDO -> prepare ('SELECT * FROM proveedor WHERE id = :id;');
+
+    // ejecuta consulta
+    $miConsulta -> execute(
+        [
+            'id' => $id
+        ]
+    );
+    // obtiene un resultado
+    $libro = $miConsulta -> fetch();
+
+
+    if ($_SERVER['REQUEST_METHOD']=='POST') {   
+
+        // preparar update
+        $miUpdate = $miPDO -> prepare ('UPDATE proveedor SET tipoDocumento = :tipoDocumento, numeroDocumento = :numeroDocumento, nombreProveedor = :nombreProveedor, direccionProveedor = :direccionProveedor, telefonoProveedor = :telefonoProveedor, correoProveedor = :correoProveedor, paginaWeb = :paginaWeb WHERE id = :id');
+        
+        // Ejecuta UPDATE con los datos
+        $miUpdate -> execute(
+            [
+                'id' =>$id,
+                'tipoDocumento'=>$tipoDoc,
+                'numeroDocumento'=>$documento,
+                'nombreProveedor'=>$nombre,
+                'direccionProveedor'=>$direccion,
+                'telefonoProveedor'=>$telefono,
+                'correoProveedor'=>$correo,
+                'paginaWeb'=>$pagina
+            ]
+        );
+
+        if($miUpdate){
+                echo "<script>
+                swal({
+                    title: 'Proveedor Actualizado',
+                    text: 'El Proveedor ha sido actualizado con exito.',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }, function () {
+                    window.location.href = '../providers.php';
+                });
+               </script>";
+        }
+ 
+    }
+
+?>
 
 <body>
     <!-- Notifications area -->
@@ -376,7 +384,7 @@
                                         
                                     </div>
                                     <p class="text-center">
-                                    <input type="hidden" name="pkIdProveedor" value="<?= $libro['pkIdProveedor'] ?>">
+                                    <input type="hidden" name="id" value="<?= $libro['id'] ?>">
                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addProvider">
 											<i class="zmdi zmdi-check"></i>
 										</button>

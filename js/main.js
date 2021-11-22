@@ -43,7 +43,7 @@ $(document).ready(function() {
             });
     });
 
-    /*editar producto*/
+    /*eliminar producto*/
     
     $('.btn-delete-product').on('click', function() {
         swal({

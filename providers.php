@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Providers</title>
+    <title>Proveedores</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/sweetalert2.css">
     <link rel="stylesheet" href="css/material.min.css">
@@ -36,6 +36,17 @@
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/main.js"></script>
     <link rel="icon" href="assets/img/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
@@ -378,7 +389,7 @@
                                         <th>Teléfono</th>
                                         <th>Correo</th>
                                         <th>Web</th>
-                                        <th>Opciones</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -391,18 +402,31 @@
                                         <td><?=$valor['telefonoProveedor']?></td>
                                         <td><?=$valor['correoProveedor']?></td>
                                         <td><?=$valor['paginaWeb']?></td>
-                                        <td><div class="dropdown">
-                                        <button class="mdl-button mdl-button--icon mdl-js-button">
-                                            <span class="zmdi zmdi-more"></span>
-                                            </button>
-                                                <div class="dropdown-content">
-                                                <a href="php/provideredit.php?pkIdProveedor=<?=$valor['pkIdProveedor']?>">
-                                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
-                                                <i class="zmdi zmdi-edit"></i></button></a>
-										        <a href="php/providerdelete.php?pkIdProveedor=<?=$valor['pkIdProveedor']?>">
-                                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
-                                                <i class="zmdi zmdi-delete"></i></button></a>
+                                
+                                        <td>
+                                            <div class="btn-group dropup">
+
+                                                <button type="button"
+                                                    class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Opciones</span>
+                                                </button>
+
+                                                <div class="dropdown-menu">
+                                                    <!-- Dropdown menu links -->
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="php/providerdelete.php?id=<?=$valor['id']?>">Eliminar</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="php/provideredit.php?id=<?=$valor['id']?>">Editar</a>
+                                                    </li>
+
+
                                                 </div>
+
                                             </div>
                                         </td>
                                     </tr>

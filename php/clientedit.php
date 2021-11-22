@@ -23,13 +23,12 @@
     <link rel="icon" href="../assets/img/icon.png">
 </head>
 
-<?php
-    // variables
+<?php 
     $hostDB='localhost:3307';
     $nombreDB='newyouhavebd';
     $usuarioDB='root';
     $passwordDB='';
-    
+
     $idCliente=isset($_REQUEST['idCliente']) ? $_REQUEST['idCliente'] : null;
     $tipoDocumento=isset($_REQUEST['tipoDocumento']) ? $_REQUEST['tipoDocumento'] : null;
     $numeroDocumento=isset($_REQUEST['numeroDocumento']) ? $_REQUEST['numeroDocumento'] : null;
@@ -39,12 +38,23 @@
     $telefonoCliente=isset($_REQUEST['telefonoCliente']) ? $_REQUEST['telefonoCliente'] : null;
     $correoCliente=isset($_REQUEST['correoCliente']) ? $_REQUEST['correoCliente'] : null;
 
-    // conecta con DB
     $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
     $miPDO=new PDO($hostPDO, $usuarioDB, $passwordDB);
 
-    // comprobar se recibimos datos por POST
-    if ($_SERVER['REQUEST_METHOD']=='POST') {
+    $miConsulta = $miPDO -> prepare ('SELECT * FROM cliente WHERE idCliente = :idCliente;');
+
+    // ejecuta consulta
+    $miConsulta -> execute(
+        [
+            'idCliente' => $idCliente
+        ]
+    );
+    // obtiene un resultado
+    $libro = $miConsulta -> fetch();
+
+
+    if ($_SERVER['REQUEST_METHOD']=='POST') {   
+
         // preparar update
         $miUpdate = $miPDO -> prepare ('UPDATE cliente SET tipoDocumento = :tipoDocumento, numeroDocumento = :numeroDocumento, nombreCliente = :nombreCliente, apellidoCliente = :apellidoCliente, direccionCliente = :direccionCliente, telefonoCliente = :telefonoCliente, correoCliente = :correoCliente WHERE idCliente = :idCliente');
         
@@ -62,24 +72,21 @@
             ]
         );
 
-        // redireccionar a leer
-        header('Location: ../client.php'); 
-
-    } else {
-        // prepara select
-        $miConsulta = $miPDO -> prepare ('SELECT * FROM cliente WHERE idCliente = :idCliente;');
-
-        // ejecuta consulta
-        $miConsulta -> execute(
-            [
-                'idCliente' => $idCliente
-            ]
-        );
-
+        if($miUpdate){
+                echo "<script>
+                swal({
+                    title: 'Cliente Actualizado',
+                    text: 'El cliente ha sido actualizado con exito.',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }, function () {
+                    window.location.href = '../client.php';
+                });
+               </script>";
+        }
+ 
     }
-
-    // obtiene un resultado
-    $libro = $miConsulta -> fetch();
 
 ?>
 
@@ -393,7 +400,7 @@
                                             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
                                             <i class="zmdi zmdi-check"></i>
                                         </button>
-                                    <div class="mdl-tooltip" for="btn-addClient">Editar Cliente</div>
+                                    <div class="mdl-tooltip" for="btn-addClient">Actualizar Cliente</div>
                                     </p>
                                 </form>
                             </div>

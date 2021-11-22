@@ -1,21 +1,57 @@
-<?php
-    // variables
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clients</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/sweetalert2.css">
+    <link rel="stylesheet" href="../css/material.min.css">
+    <link rel="stylesheet" href="../css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
+    <script src="../js/ajaxjq.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
+    </script>
+    <script src="../js/material.min.js"></script>
+    <script src="../js/sweetalert2.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/main.js"></script>
+    <link rel="icon" href="../assets/img/icon.png">
+</head>
+
+<?php 
     $hostDB='localhost:3307';
     $nombreDB='newyouhavebd';
     $usuarioDB='root';
     $passwordDB='';
+
     $id=isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
     $username=isset($_REQUEST['username']) ? $_REQUEST['username'] : null;
     $password=isset($_REQUEST['password']) ? $_REQUEST['password'] : null;
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // conecta con DB
     $hostPDO="mysql:host=$hostDB;dbname=$nombreDB;";
     $miPDO=new PDO($hostPDO, $usuarioDB, $passwordDB);
 
-    // comprobar se recibimos datos por POST
-    if ($_SERVER['REQUEST_METHOD']=='POST') {
+    $miConsulta = $miPDO -> prepare ('SELECT * FROM users WHERE id = :id;');
+
+    // ejecuta consulta
+    $miConsulta -> execute(
+        [
+            'id' => $id
+        ]
+    );
+    // obtiene un resultado
+    $libro = $miConsulta -> fetch();
+
+
+    if ($_SERVER['REQUEST_METHOD']=='POST') {   
+
         // preparar update
         $miUpdate = $miPDO -> prepare ('UPDATE users SET username = :username, password = :password WHERE id = :id');
         
@@ -28,28 +64,23 @@
             ]
         );
 
-        // redireccionar a leer
-        header('Location: ../users.php'); 
-
-    } else {
-        // prepara select
-        $miConsulta = $miPDO -> prepare ('SELECT * FROM users WHERE id = :id;');
-
-        // ejecuta consulta
-        $miConsulta -> execute(
-            [
-                'id' => $id
-            ]
-        );
-
+        if($miUpdate){
+                echo "<script>
+                swal({
+                    title: 'Usuario Actualizado',
+                    text: 'El usuario ha sido actualizado con exito.',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }, function () {
+                    window.location.href = '../users.php';
+                });
+               </script>";
+        }
+ 
     }
 
-    // obtiene un resultado
-    $libro = $miConsulta -> fetch();
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">

@@ -25,13 +25,24 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/ajaxjq.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
+    window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
     </script>
     <script src="js/material.min.js"></script>
     <script src="js/sweetalert2.min.js"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/main.js"></script>
     <link rel="icon" href="assets/img/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
@@ -49,9 +60,9 @@
                 </div>
                 <figcaption>
                     <span>
-                    Nombre de Admin<br>
-                    <small>Admin</small>
-                </span>
+                        Nombre de Admin<br>
+                        <small>Admin</small>
+                    </span>
                 </figcaption>
             </figure>
             <nav class="full-width">
@@ -280,17 +291,17 @@
                                         </div> -->
                                         <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> -->
-                                                <!-- <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameAdmin"> -->
-                                                <!-- <label class="mdl-textfield__label" for="NameAdmin">Tipo de documento</label> -->
-                                                <!-- <select class="mdl-textfield__input" name="tipod" id="typeDocument">
+                                        <!-- <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameAdmin"> -->
+                                        <!-- <label class="mdl-textfield__label" for="NameAdmin">Tipo de documento</label> -->
+                                        <!-- <select class="mdl-textfield__input" name="tipod" id="typeDocument">
                                                     <option value="" disabled="" selected="">Tipo de documento</option>
                                                     <option value="">Tarjeta de identidad</option>
                                                     <option value="">Cedula</option>
                                                     <option value="">Cedula de extranjeria</option>
                                                     <option value="">NIT</option>
                                                   </select> -->
-                                                <!-- <span class="mdl-textfield__error">Invalid name</span> -->
-                                            <!-- </div>
+                                        <!-- <span class="mdl-textfield__error">Invalid name</span> -->
+                                        <!-- </div>
                                         </div> -->
                                         <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -335,18 +346,23 @@
                                             </div>
                                         </div> -->
                                         <div class="mdl-cell mdl-cell--12-col">
-                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DETALLES DE LA CUENTA</legend><br>
+                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+                                                &nbsp; DETALLES DE LA CUENTA</legend><br>
                                         </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="user-name" name="username">
-                                                <label class="mdl-textfield__label" for="username">Nombre de usuario</label>
+                                                <input class="mdl-textfield__input" type="text"
+                                                    pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ]*(\.[0-9]+)?" id="user-name"
+                                                    name="username">
+                                                <label class="mdl-textfield__label" for="username">Nombre de
+                                                    usuario</label>
                                                 <span class="mdl-textfield__error">Usuario Invalido</span>
                                             </div>
                                         </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="password" id="user-pass" name="password">
+                                                <input class="mdl-textfield__input" type="password" id="user-pass"
+                                                    name="password">
                                                 <label class="mdl-textfield__label" for="password">Contraseña</label>
                                                 <span class="mdl-textfield__error">Contraseña Invalida</span>
                                             </div>
@@ -362,10 +378,11 @@
                                         </div> -->
                                     </div>
                                     <p class="text-center">
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
-											<i class="zmdi zmdi-plus"></i>
-										</button>
-                                        <div class="mdl-tooltip" for="signup-btn">Agregar Usuario</div>
+                                        <button
+                                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                            <i class="zmdi zmdi-plus"></i>
+                                        </button>
+                                    <div class="mdl-tooltip" for="signup-btn">Agregar Usuario</div>
                                     </p>
                                 </form>
                             </div>
@@ -376,7 +393,7 @@
 
             <div class="mdl-tabs__panel is-active" id="tabListUser">
                 <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
                         <div class="table-responsive">
                             <div class="full-width panel-tittle bg-success text-center tittles">Lista de Usuarios</div>
                             <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
@@ -390,21 +407,34 @@
                                     <?php foreach ($miConsulta as $clave=>$valor):?>
                                     <tr>
                                         <td class="mdl-data-table__cell--non-numeric"><?=$valor['username']?></td>
-                                        <td><div class="dropdown">
-                                        <button class="mdl-button mdl-button--icon mdl-js-button">
-                                            <!-- <span class="zmdi zmdi-more"></span> -->
-                                            </button>
-                                                <div class="dropdown-content">
-                                                <a href="login/user-edit.php?id=<?=$valor['id']?>">
-                                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
-                                                <i class="zmdi zmdi-edit"></i></button></a>
-										        <a href="login/user-delete.php?id=<?=$valor['id']?>">
-                                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
-                                                <i class="zmdi zmdi-delete"></i></button></a>
+                                        <td>
+                                            <div class="btn-group dropup">
+
+                                                <button type="button"
+                                                    class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Opciones</span>
+                                                </button>
+
+                                                <div class="dropdown-menu">
+                                                    <!-- Dropdown menu links -->
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="login/user-delete.php?id=<?=$valor['id']?>">Eliminar</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="login/user-edit.php?id=<?=$valor['id']?>">Editar</a>
+                                                    </li>
+
+
                                                 </div>
+
                                             </div>
                                         </td>
                                     </tr>
+
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
