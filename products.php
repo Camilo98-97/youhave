@@ -442,7 +442,7 @@
                             <div class="mdl-card mdl-shadow--2dp full-width product-card">
 
                                 <div class="mdl-card__title">
-                                    <img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
+                                    <!-- <img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive"> -->
                                 </div>
 
                                 <div class="mdl-card__supporting-text">

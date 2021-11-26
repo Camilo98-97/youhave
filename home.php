@@ -60,6 +60,13 @@
 
     $query4 = $stmt4 -> fetch();
 
+    //salidas
+    $sql5 = "SELECT COUNT(id) AS allsales FROM sales";
+    $stmt5 = $pdo->prepare($sql5);
+    $stmt5 -> execute();
+
+    $query5 = $stmt5 -> fetch();
+
 ?>
 
     <!-- Notifications area -->
@@ -140,12 +147,12 @@
                 <div>
                     <img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
                 </div>
-                <figcaption>
+                <!-- <figcaption>
                     <span>
                         Nombre de Admin<br>
                         <small>Admin</small>
                     </span>
-                </figcaption>
+                </figcaption> -->
             </figure>
             <nav class="full-width">
                 <ul class="full-width list-unstyle menu-principal">
@@ -270,7 +277,7 @@
                         </a>
                     </li>
                     <li class="full-width divider-menu-h"></li>
-                    <li class="full-width">
+                    <!-- <li class="full-width">
                         <a href="inventory.php" class="full-width">
                             <div class="navLateral-body-cl">
                                 <i class="zmdi zmdi-store"></i>
@@ -279,7 +286,7 @@
                                 INVENTARIO
                             </div>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="full-width divider-menu-h"></li>
                     <li class="full-width">
                         <a href="#!" class="full-width btn-subMenu">
@@ -406,7 +413,7 @@
             <article class="full-width tile">
                 <div class="tile-text">
                     <span class="text-condensedLight">
-                        47<br>
+                        <?= $query5['allsales']?><br>
                         <small>Salidas</small>
                     </span>
                 </div>
