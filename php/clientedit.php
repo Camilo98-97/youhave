@@ -103,12 +103,6 @@
                 <div>
                     <img src="../assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
                 </div>
-                <figcaption>
-                    <span>
-                        Nombre de Admin<br>
-                        <small>Admin</small>
-                    </span>
-                </figcaption>
             </figure>
             <nav class="full-width">
                 <ul class="full-width list-unstyle menu-principal">
@@ -219,17 +213,6 @@
                             </div>
                             <div class="navLateral-body-cr">
                                 SALIDAS
-                            </div>
-                        </a>
-                    </li>
-                    <li class="full-width divider-menu-h"></li>
-                    <li class="full-width">
-                        <a href="../inventory.php" class="full-width">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-store"></i>
-                            </div>
-                            <div class="navLateral-body-cr">
-                                INVENTARIO
                             </div>
                         </a>
                     </li>
